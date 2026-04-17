@@ -1,0 +1,599 @@
+:root {
+  --color-fondo: #f4f6f8;
+  --color-texto: #1f2937;
+  --color-texto-suave: #64748b;
+
+  --color-panel: #ffffff;
+  --color-panel-secundario: #f5f7fb;
+  --color-borde: #dbe2ea;
+  --color-borde-suave: #e5e7eb;
+
+  --color-encabezado-tabla: #eef2f7;
+  --color-hover-fila: #f8fafc;
+
+  --color-primario: #2563eb;
+  --color-primario-hover: #1d4ed8;
+  --color-secundario: #e5e7eb;
+  --color-secundario-hover: #d1d5db;
+
+  --color-exito-fondo: #d4edda;
+  --color-exito-texto: #155724;
+
+  --color-error-fondo: #f8d7da;
+  --color-error-texto: #721c24;
+
+  --color-advertencia-fondo: #fff3cd;
+  --color-advertencia-texto: #856404;
+
+  --color-eliminar: #c62828;
+  --color-eliminar-hover: #a61f1f;
+
+  --color-desactivar: #dc2626;
+  --color-desactivar-hover: #b91c1c;
+
+  --color-activar: #16a34a;
+  --color-activar-hover: #15803d;
+
+  --sombra-panel: 0 2px 10px rgba(15, 23, 42, 0.04);
+  --sombra-tarjeta: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+body.modoOscuro {
+  --color-fondo: #0f172a;
+  --color-texto: #e5e7eb;
+  --color-texto-suave: #94a3b8;
+
+  --color-panel: #111827;
+  --color-panel-secundario: #1e293b;
+  --color-borde: #334155;
+  --color-borde-suave: #334155;
+
+  --color-encabezado-tabla: #1f2937;
+  --color-hover-fila: #172033;
+
+  --color-primario: #3b82f6;
+  --color-primario-hover: #2563eb;
+  --color-secundario: #334155;
+  --color-secundario-hover: #475569;
+
+  --color-exito-fondo: #163a24;
+  --color-exito-texto: #b7f7c9;
+
+  --color-error-fondo: #4a1f24;
+  --color-error-texto: #fecdd3;
+
+  --color-advertencia-fondo: #4a3b12;
+  --color-advertencia-texto: #fde68a;
+
+  --color-eliminar: #dc2626;
+  --color-eliminar-hover: #b91c1c;
+
+  --color-desactivar: #ef4444;
+  --color-desactivar-hover: #dc2626;
+
+  --color-activar: #22c55e;
+  --color-activar-hover: #16a34a;
+
+  --sombra-panel: 0 2px 10px rgba(0, 0, 0, 0.25);
+  --sombra-tarjeta: 0 1px 6px rgba(0, 0, 0, 0.25);
+}
+
+/* =========================
+   BASE
+========================= */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: var(--color-fondo);
+  color: var(--color-texto);
+}
+
+input,
+select,
+button,
+textarea {
+  font: inherit;
+}
+
+.oculto {
+  display: none !important;
+}
+
+/* =========================
+   ESTRUCTURA GENERAL
+========================= */
+
+.encabezadoSuperior {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+#btnTema {
+  background: var(--color-secundario);
+  color: var(--color-texto);
+}
+
+#btnTema:hover {
+  background: var(--color-secundario-hover);
+}
+
+@media (max-width: 768px) {
+  .encabezadoSuperior {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  #btnTema {
+    width: 100%;
+  }
+}
+
+.contenedorPrincipal {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.encabezadoPagina {
+  margin-bottom: 20px;
+}
+
+.encabezadoPagina h1 {
+  margin: 0 0 6px;
+  font-size: 2rem;
+}
+
+.subtituloPagina {
+  margin: 0;
+  color: var(--color-texto-suave);
+}
+
+.contenidoPrincipal {
+  display: block;
+}
+
+.vista {
+  animation: aparecerVista 0.2s ease;
+}
+
+.bloqueVista {
+  background: var(--color-panel);
+  border: 1px solid var(--color-borde);
+  border-radius: 14px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: var(--sombra-panel);
+}
+
+.bloqueVista h2 {
+  margin-top: 0;
+  margin-bottom: 18px;
+}
+
+.cabeceraVista {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+/* =========================
+   NAVEGACIÓN SPA
+========================= */
+.navPrincipal {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.tabBtn {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 10px;
+  background: var(--color-secundario);
+  color: var(--color-texto);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+
+.tabBtn:hover {
+  background: var(--color-secundario-hover);
+}
+
+.tabBtn:active {
+  transform: scale(0.98);
+}
+
+.tabBtn.activo {
+  background: #2563eb;
+  color: #ffffff;
+  font-weight: bold;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
+}
+
+/* =========================
+   FORMULARIOS Y FILTROS
+========================= */
+.formularioGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.registroGrid {
+  margin-bottom: 18px;
+}
+
+.campoFormulario {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.campoFormulario label {
+  font-weight: bold;
+  color: #334155;
+}
+
+.campoBoton {
+  justify-content: end;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--color-borde);
+  border-radius: 10px;
+  background: var(--color-panel);
+  color: var(--color-texto);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+button {
+  padding: 10px 14px;
+  border: none;
+  border-radius: 10px;
+  background: var(--color-primario);
+  color: #ffffff;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease, background 0.15s ease;
+}
+
+button:hover {
+  transform: translateY(-1px);
+  opacity: 0.96;
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+.accionesPrimarias,
+.accionesSecundarias {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.filtrosGrupo {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: end;
+  margin-bottom: 16px;
+}
+
+.filtrosGrupo input,
+.filtrosGrupo select,
+.filtrosGrupo button {
+  min-height: 42px;
+}
+
+.filtrosPersonas input,
+.filtrosHistorial input,
+.filtrosHistorial button {
+  flex: 1 1 200px;
+}
+
+.filtrosEstadisticas .campoFormulario {
+  min-width: 180px;
+}
+
+/* =========================
+   TABLAS
+========================= */
+.tablaContenedor {
+  width: 100%;
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--color-panel);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+th,
+td {
+  padding: 12px 14px;
+  text-align: left;
+  border-bottom: 1px solid var(--color-borde-suave);
+  vertical-align: middle;
+}
+
+th {
+  background: var(--color-encabezado-tabla);
+  color: var(--color-texto);
+  font-weight: 700;
+}
+
+tbody tr {
+  transition: background-color 0.2s ease, transform 0.15s ease;
+}
+
+tbody tr:hover {
+  background-color: var(--color-hover-fila);
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* =========================
+   BOTONES ESPECÍFICOS
+========================= */
+.btnEliminar {
+  background-color: var(--color-eliminar);
+}
+
+.btnEliminar:hover {
+  background-color: var(--color-eliminar-hover);
+}
+
+.btnDesactivar {
+  background: var(--color-desactivar);
+}
+
+.btnDesactivar:hover {
+  background: var(--color-desactivar-hover);
+}
+
+.btnActivar {
+  background: var(--color-activar);
+}
+
+.btnActivar:hover {
+  background: var(--color-activar-hover);
+}
+
+/* =========================
+   MENSAJES
+========================= */
+.mensaje {
+  padding: 12px 14px;
+  margin-bottom: 18px;
+  border-radius: 10px;
+  font-weight: bold;
+  text-align: center;
+  animation: slideDown 0.25s ease;
+}
+
+.exito {
+  background-color: var(--color-exito-fondo);
+  color: var(--color-exito-texto);
+}
+
+.error {
+  background-color: var(--color-error-fondo);
+  color: var(--color-error-texto);
+}
+
+.advertencia {
+  background-color: var(--color-advertencia-fondo);
+  color: var(--color-advertencia-texto);
+}
+
+/* =========================
+   MODAL DE CONFIRMACIÓN
+========================= */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  animation: fadeIn 0.2s ease;
+}
+
+.modalConfirm {
+  background: var(--color-panel);
+  width: 90%;
+  max-width: 420px;
+  border-radius: 14px;
+  padding: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  animation: zoomIn 0.2s ease;
+}
+
+.modalConfirm h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.modalConfirm p {
+  margin-bottom: 20px;
+  color: var(--color-texto-suave);
+}
+
+.modalAcciones {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.modalAcciones button {
+  min-width: 100px;
+}
+
+#btnCancelarConfirm {
+  background: var(--color-secundario);
+  color: var(--color-texto);
+}
+
+#btnAceptarConfirm {
+  background: var(--color-primario);
+  color: #ffffff;
+}
+
+/* =========================
+   ESTADÍSTICAS
+========================= */
+.resumenEstadisticas {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.tarjetaResumen {
+  background: var(--color-panel-secundario);
+  border-radius: 12px;
+  padding: 16px 18px;
+  min-width: 180px;
+  box-shadow: var(--sombra-tarjeta);
+  border: 1px solid var(--color-borde-suave);
+}
+
+.tarjetaResumen strong {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--color-texto-suave);
+}
+
+.tarjetaResumen p {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: bold;
+  color: var(--color-texto);
+}
+
+/* =========================
+   ANIMACIONES
+========================= */
+.filaEliminando {
+  animation: fadeOutRight 0.25s ease forwards;
+}
+
+.filaNueva {
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeOutRight {
+  to {
+    opacity: 0;
+    transform: translateX(15px);
+  }
+}
+
+@keyframes aparecerVista {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 768px) {
+  .contenedorPrincipal {
+    padding: 16px;
+  }
+
+  .cabeceraVista {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .accionesPrimarias,
+  .accionesSecundarias,
+  .filtrosGrupo,
+  .navPrincipal {
+    flex-direction: column;
+  }
+
+  .tabBtn,
+  .accionesPrimarias button,
+  .accionesSecundarias button,
+  .filtrosGrupo button {
+    width: 100%;
+  }
+
+  .formularioGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .resumenEstadisticas {
+    flex-direction: column;
+  }
+
+  .tarjetaResumen {
+    width: 100%;
+  }
+}

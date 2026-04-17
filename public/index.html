@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Control horario</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="contenedorPrincipal">
+    <header class="encabezadoPagina">
+  <div class="encabezadoSuperior">
+    <div>
+      <h1>Control horario</h1>
+      <p class="subtituloPagina">Gestión de personas, registros e indicadores de horas</p>
+    </div>
+
+    <button id="btnTema" type="button">🌙 Modo oscuro</button>
+  </div>
+</header>
+
+    <div id="mensaje" class="mensaje oculto"></div>
+
+    <nav class="navPrincipal">
+      <button class="tabBtn activo" data-vista="vistaPersonas" type="button">Personas</button>
+      <button class="tabBtn" data-vista="vistaRegistro" type="button">Registro</button>
+      <button class="tabBtn" data-vista="vistaHistorial" type="button">Historial</button>
+      <button class="tabBtn" data-vista="vistaEstadisticas" type="button">Estadísticas</button>
+    </nav>
+
+    <main class="contenidoPrincipal">
+      <section id="vistaPersonas" class="vista activa">
+        <div class="bloqueVista">
+          <h2>Gestión de personas</h2>
+
+          <form id="formPersona" class="formularioGrid">
+            <input type="text" id="identificacion" placeholder="Identificación" required>
+            <input type="text" id="nombre" placeholder="Nombre" required>
+            <input type="text" id="apellido" placeholder="Apellido" required>
+            <button type="submit">Agregar persona</button>
+          </form>
+
+          <div class="accionesSecundarias">
+            <button id="btnMostrarActivas" type="button">Mostrar activas</button>
+            <button id="btnMostrarTodas" type="button">Mostrar todas</button>
+          </div>
+
+          <div class="filtrosPersonas filtrosGrupo">
+            <input type="text" id="filtroIdentificacion" placeholder="Filtrar por identificación">
+            <input type="text" id="filtroApellido" placeholder="Filtrar por apellido">
+          </div>
+
+          <div class="tablaContenedor">
+            <table>
+              <thead>
+                <tr>
+                  <th>Identificación</th>
+                  <th>Nombre</th>
+                  <th>Apellido</th>
+                  <th>Estado</th>
+                  <th>Acción</th>
+                </tr>
+              </thead>
+              <tbody id="tablaPersonas"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section id="vistaRegistro" class="vista oculto">
+        <div class="bloqueVista">
+          <h2>Registrar horario</h2>
+
+          <div class="formularioGrid registroGrid">
+            <div class="campoFormulario">
+              <label for="personaSelect">Persona</label>
+              <select id="personaSelect"></select>
+            </div>
+
+            <div class="campoFormulario">
+              <label for="fecha">Fecha</label>
+              <input type="date" id="fecha" required>
+            </div>
+
+            <div class="campoFormulario">
+              <label for="horaEntrada">Hora de entrada</label>
+              <input type="time" id="horaEntrada" required>
+            </div>
+
+            <div class="campoFormulario">
+              <label for="horaSalida">Hora de salida</label>
+              <input type="time" id="horaSalida" required>
+            </div>
+          </div>
+
+          <div class="accionesPrimarias">
+            <button id="btnGuardarRegistro" type="button">Guardar registro</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="vistaHistorial" class="vista oculto">
+        <div class="bloqueVista">
+          <div class="cabeceraVista">
+            <h2>Historial</h2>
+            <button id="btnCargar" type="button">Actualizar historial</button>
+          </div>
+
+          <div class="filtrosHistorial filtrosGrupo">
+            <input type="text" id="filtroHistorialIdentificacion" placeholder="Filtrar por identificación">
+            <input type="text" id="filtroHistorialApellido" placeholder="Filtrar por apellido">
+            <input type="date" id="filtroHistorialFecha">
+            <button id="btnLimpiarFiltrosHistorial" type="button">Limpiar filtros</button>
+          </div>
+
+          <div class="tablaContenedor">
+            <table>
+              <thead>
+                <tr>
+                  <th>Identificación</th>
+                  <th>Persona</th>
+                  <th>Fecha</th>
+                  <th>Entrada</th>
+                  <th>Salida</th>
+                  <th>Minutos</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody id="tablaRegistros"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section id="vistaEstadisticas" class="vista oculto">
+        <div class="bloqueVista">
+          <h2>Estadísticas</h2>
+
+          <div class="filtrosEstadisticas filtrosGrupo">
+            <div class="campoFormulario">
+              <label for="estadisticaPersona">Persona</label>
+              <select id="estadisticaPersona"></select>
+            </div>
+
+            <div class="campoFormulario">
+              <label for="tipoEstadistica">Período</label>
+              <select id="tipoEstadistica">
+                <option value="semanal">Semanal</option>
+                <option value="mensual">Mensual</option>
+              </select>
+            </div>
+
+            <div class="campoFormulario">
+              <label for="anioEstadistica">Año</label>
+              <select id="anioEstadistica">
+                <option value="">Todos</option>
+              </select>
+            </div>
+
+            <div class="campoFormulario campoBoton">
+              <button id="btnCargarEstadisticas" type="button">Ver estadísticas</button>
+            </div>
+          </div>
+
+          <div id="resumenEstadisticas" class="resumenEstadisticas"></div>
+
+          <div class="tablaContenedor">
+            <table>
+              <thead>
+                <tr>
+                  <th>Período</th>
+                  <th>Total horas</th>
+                  <th>Registros</th>
+                </tr>
+              </thead>
+              <tbody id="tablaEstadisticas"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div id="overlayConfirm" class="overlay oculto">
+    <div id="modalConfirm" class="modalConfirm">
+      <h3 id="confirmTitulo">Confirmar acción</h3>
+      <p id="confirmTexto">¿Seguro que querés continuar?</p>
+      <div class="modalAcciones">
+        <button id="btnCancelarConfirm" type="button">Cancelar</button>
+        <button id="btnAceptarConfirm" type="button">Aceptar</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
